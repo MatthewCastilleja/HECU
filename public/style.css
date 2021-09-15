@@ -1,0 +1,469 @@
+/* a minimalist set of CSS resets */
+
+/* default to border-box */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  @font-face {
+    font-family: 'beepboop';
+    src: url('./assets/Retro Gaming.ttf');
+}
+
+*{
+  font-family: 'beepboop';
+  color: white;
+  user-select:none;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+  /* adjust typography defaults */
+  body {
+    margin: 0;
+    display: flex;
+    background-image: url('./assets/browser.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  /* This centers our sketch vertically. */
+  align-items: center;
+    font-family: sans-serif;
+    line-height: 1.5;
+  }
+
+  /* images and videos max out at full width */
+  img,
+  video {
+    height: auto;
+    max-width: 100%;
+  }
+
+  #canvas_div{
+    position: absolute;
+    top: 108px;
+  }
+
+  #canvas_div:hover{
+    cursor: crosshair;
+  }
+
+  .btn-container{
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .btn{
+    padding: 5px 7px 5px 7px;
+    font-weight: bold;
+    width: auto;
+    height: auto;
+    transition: all 0.1s ease-in;
+  }
+
+  .btn:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.1s ease-in;
+  }
+
+  #player_bar{
+    position: absolute;
+    top: 40px;
+    height: 68px;
+    width: 657px;
+    background: rgb(51, 0, 51);
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: 170px 300px;
+    grid-template-rows: auto;
+    align-items: center;
+  }
+
+  #start-game{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: unset;
+    z-index: 3;
+    transition: all 0.5s ease-out;
+  }
+
+  #start-img-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('./assets/title_screen.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  #start-btn{
+    position: absolute;
+    bottom: 20vh;
+    right: 35vw;
+    width: 110px;
+    height: 47px;
+    background-image: url('./assets/play_button.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: all 0.15s ease-in;
+  }
+
+  #start-btn:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.15s ease-in;
+  }
+
+  #help-btn{
+    position: absolute;
+    bottom: 10vh;
+    right: 35vw;
+    width: 110px;
+    height: 47px;
+    display: none;
+    background-image: url('./assets/help_button.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: all 0.15s ease-in;
+  }
+
+  #help-btn:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.15s ease-in;
+  }
+
+  #help-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+  }
+
+  #help-icon{
+    position: absolute; 
+    left: 255px;
+    top: 28px;
+    width: 35px;
+    height: 25x;
+    transition: all 0.1s ease;
+  }
+
+  #help-icon:hover{
+    cursor:pointer;
+    transform: scale(1.1);
+    transition: all 0.1s ease;
+  }
+
+  #instructions{
+    position: absolute;
+    top: 40px;
+    width: 657px;
+    height: 620px; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    background: rgb(7, 11, 43);
+  }
+
+  #close-instructions{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+    z-index: 10;
+    transition: all 0.15s ease-in;
+  }
+
+  #close-instructions:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: all 0.15s ease-in;
+  }
+
+  #instructions-text{
+    position: absolute;
+    float: none;
+    display: block;
+    width: 90%;
+    height: 90%;
+  }
+
+  #instruction p{
+    padding: 10px;
+  } 
+
+  #game-over{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    cursor: unset;
+    text-align: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  #over-image-container{
+    width: 380px;
+    height: 305px;
+    margin-top: 200px;
+    background-image: url('assets/gameover_template.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  #game-over .btn{
+    font-weight: bold;
+    width: 88px;
+    height: 38px;
+  }
+
+  #game-over #btn-img-yes{
+    width: 100%;
+    height: 100%;
+    background-image: url('./assets/gameover_yes_unlit.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: all 0.05s ease-in;
+  }
+
+  #btn-img-yes:hover{
+    background-image: url('./assets/gameover_yes_lit.png') !important;
+    transition: all 0.05s ease-in;
+  }
+
+  #game-over #btn-img-no{
+    width: 55px;
+    height: 36px;
+    margin-left: 10px;
+    background-image: url('./assets/gameover_no_unlit.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: all 0.05s ease-in;
+  }
+
+  #btn-img-no:hover{
+    background-image: url('./assets/gameover_no_lit.png') !important;
+    transition: all 0.05s ease-in;
+  }
+
+  #find-boss-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    z-index: 6;
+    transition: all 15s ease;
+  }
+
+  #find-boss{
+    width: 50vw;
+    height: 50vh;
+    display: block;
+    text-align: center;
+  }
+
+  #boss-convo-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    z-index: 6;
+    transition: all 15s ease;
+  }
+
+  #boss-convo{
+    margin-top: 20vh;
+    width: 40vw;
+    height: 50vh;
+    display: block;
+    text-align: center;
+  }
+
+  .fade-text{
+    opacity: 0 !important;
+    z-index: -2 !important;
+  }
+
+  #map-container{
+    position: absolute; 
+    left: 328px;
+    top: 28px;
+    width: 25px;
+    height: 30px;
+    transition: all 0.1s ease;
+  }
+
+  #map-container:hover{
+    cursor:pointer;
+    transform: scale(1.1);
+    transition: all 0.1s ease;
+  }
+
+  #game-won{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    cursor: unset;
+    text-align: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  #won-image-container{
+    width: 100vw;
+    height: auto;
+    background-image: url('assets/endscreen.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; 
+  }
+
+  #last-names{
+    position: relative;
+    margin-right: 10%;
+    margin-top: -10%;
+    width: 500px;
+  }
+
+  #credits{
+    transform: translateY(50vh);
+    font-size: 2rem;
+    font-weight: 600;
+    color: whitesmoke;
+    transition: all 40s ease;
+  }
+
+  #player_health_container{
+    width: 100%;
+    margin-left: 70px;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  #found_keys_container{
+    width: 100%;
+    margin-left: 50px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .heart{
+    width: 25px;
+    height: auto;
+    margin-right: -15px;
+    transform: none;
+    transition: all 1s ease-in;
+  }
+
+  .cores{
+    width: 20px;
+    height: auto;
+    margin: 2.5px;
+    transform: none;
+    transition: all 1s ease-in;
+  }
+
+  .pop-out{
+    transform: scale(1);
+    transition: all 1s ease-in;
+  }
+
+  .move-up{ /*Move the credits up*/
+    transform: translateY(-200vh) !important;
+    transition: all 40s ease;
+  }
+
+  .move-to-left{
+    transform: translateX(-100vw);
+    transition: all 0.1s ease-in;
+  }
+
+  .pointer{
+    cursor: pointer !important;
+  }
+
+  .sub-title{
+    font-size: 1.18rem;
+    padding: 0 10px 0 10px;
+  }
+
+  .img-icon{
+    height: 25px; 
+    width: auto;
+    max-width: 30px;
+  }
+
+  #map-warning-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 8;
+    transition: all 0.5s ease;
+  }
+
+  .remove{
+    z-index: -2 !important;
+    transition: all 0.5s ease;
+  }
+
+  
+  #starting-objective{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 8;
+    transition: all 8s ease;
+  }
+
+  
+  #respawn-text{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 8;
+    transition: all 6s ease;
+  }

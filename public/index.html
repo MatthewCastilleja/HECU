@@ -1,89 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="assets/favicon.png" />
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/9.0.2/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/9.0.2/firebase-auth-compat.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-database-compat.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-firestore-compat.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-functions-compat.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-messaging-compat.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-storage-compat.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-analytics-compat.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-remote-config-compat.js"></script>
-    <script defer src="/__/firebase/9.0.2/firebase-performance-compat.js"></script>
-    <!-- 
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
+    <title>HECU</title>
+
+    <!--Server stuff
+    <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-database.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-functions.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-remote-config.js"></script>
+    <script defer src="/__/firebase/8.8.1/firebase-performance.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    -->
+    
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <!-- import jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css" />
+
+    <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
+    <script src="/player.js"></script>
+    <script src="/room.js"></script>
+    <script src="/initGame.js"></script>
+    <script src="/getRoom.js"></script>
+    <script src="/door.js"></script>
+    <script src="/bullet.js"></script>
+    <script src="/eventHandle.js"></script>
+    <script src="/spawner.js"></script>
+    <script src="/enemy.js"></script>
+    <script src="/playerbar.js"></script>
+    <script src="/resetGame.js"></script>
+    <script src="/gameMap.js"></script>
+    <script src="/drops.js"></script>
+    <script src="/boss.js"></script>
+    
+    <!-- import p5 libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/addons/p5.sound.min.js"></script>
+    <script src="https://cdn.JsDelivr.net/gh/bmoren/p5.collide2D/p5.collide2d.min.js"></script>
+    <!--<script src="lib/p5.play.js" type="text/javascript"></script>-->
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
+      var ua = navigator.userAgent.toLowerCase(); 
+        if (ua.indexOf('safari') != -1) { 
+          if (ua.indexOf('chrome') > -1) {
+            
+          } else {
+            alert("HECU performs best on chrome!") // Safari
+          }
         }
-      });
     </script>
+  </head>
+  
+  <body>
+
+    <div id="player_bar"> <!-- Player hp and cores-->
+      <div id="player_health_container" onload='updatePlayerHearts()'></div>
+      <div id="found_keys_container"></div>
+      <img id="map-container" src="assets/pin.png" alt="Map"><p style="position: absolute; left: 322px; top: -15px">Map</p></img>
+      <img id="help-icon" src="assets/help_pin.png" alt="Help"><p style="position: absolute; left: 249px; top: -15px">Help</p>
+    </div>
+
+    <div id="canvas_div"></div> <!--Sketch-->
+
+    <div id="start-game"> <!-- Starting screen -->
+      <div id="start-img-container">
+          <div id="start-btn"></div>
+          <div id="help-btn"></div>
+      </div>
+    </div>
+
+    <div id="help-container">
+      <div id="instructions">
+        <img src="assets/cross.png" alt="close instuctions" id="close-instructions">
+        <div id="instructions-text">
+          <p>
+            <b style="color: rgb(32, 250, 163); font-size: 2.5rem; text-decoration: underline;"> Instructional Briefing:</b> <br>
+
+            <b style="color: rgb(103, 159, 0);" class ="sub-title">Movement:</b> WASD <img src="assets/wasd.png" alt="WASD" class='img-icon'> or arrow keys <img src="assets/arrow_keys.png" alt="Arrow Keys" class='img-icon'> <br><br>
+             
+            <img src="assets/pistol.png" alt="Pistol" class='img-icon'> <b style="color: rgb(192, 37, 0);" class ="sub-title">Plasma Shooter:</b> HOLD left click (shoot) + mouse (aim)<br><br>
+            
+            <img src="assets/pin.png" alt="Pin" class='img-icon'><b style="color: rgb(165, 219, 209);" class ="sub-title">Map:</b> Navigate and teleport to a previously visited room around the ship using the left mouse button.<br><br>
+            
+            <img src="assets/power_core.png" alt="Power Core" class='img-icon'><b style="color: rgb(191, 126, 255);" class ="sub-title">Power Core Storage:</b> Find all 4 cores, and open your map to find the boss <br><br>
+            
+            <img src="assets/syringe.png" alt="Syringe" class='img-icon'><b style="color: rgb(255, 132, 24);" class ="sub-title">Health Points:</b> If you lose all your health, your map progress will still persist. A handy orange syringe will restore 3 health. <br><br>
+
+            Welcome to HECU, the Hostile Extraterrestrial Containment Unit! Defeat the aliens, repower the ship, and restore peace. <br><br>
+
+            Best of luck space hero, and may the stars be with you! <br><br>
+          </p>
+      </div>
+      </div>
+    </div>
+
+    <div id="game-over"> <!-- Game over screen-->
+        <div id="over-image-container">
+          <div class="btn-container">
+              <div class="btn" style="margin-top: 30vh !important">
+                <div id="btn-img-yes"></div>
+              </div>
+          </div>
+          <div class="btn-container">
+            <div class="btn">
+              <div id="btn-img-no"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-won">
+      <div id="won-image-container">
+        <img id="last-names" src="assets/endscreen_names.png"></img>
+        <div id="credits">
+          <p>
+            Made by: <br>
+            Gashon Hussein <br>
+            Matthew Castilleja <br>
+            Lena Elkoussy <br>
+            JJ <br> <br> <br>
+            Special Thanks to the <br>
+            Cohort 14 CSSI Team: <br>
+            Dave, Courtney, Angela + Rob <br>
+            Jasmine, Tomas, Gabriel,<br>
+            Raymond + Brooke<br> <br> <br>
+            Special shoutout to everyone<br>
+            who playtested HECU<br>
+          </p>
+        </div>
+    </div>
+    </div>
+
+    <div id="find-boss-container">
+      <div id="find-boss">
+        <h1>Your Map Teleportation has Stopped Working...<br><br>
+        Use the Map to Locate and Find the Boss<br></h1>
+      </div>
+    </div>
+
+    <div id="boss-convo-container">
+      <div id="boss-convo">
+        <h2>You'll Have to Beat Me if You Hope to Escape</h2>
+      </div>
+    </div>
+
+    <div id="map-warning-container">
+      <p>Kill all enemies first</p>
+    </div>
+
+    <div id="starting-objective">
+      <p>Your escape pod has no power. <br><br> Search for the power cores</p>
+    </div>
+
+    <div id="respawn-text">
+      <p>It's not over yet. <br><br> Get back into the fight!</p>
+    </div>
+
   </body>
 </html>
